@@ -1,4 +1,4 @@
-package webhook.processor.service.impl;
+package webhook.processor;
 
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
