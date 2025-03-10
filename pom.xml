@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>webhook.processor</groupId>
-    <artifactId>webhook-processor</artifactId>
+    <groupId>it.circles</groupId>
+    <artifactId>it-circles</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
