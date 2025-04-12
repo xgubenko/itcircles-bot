@@ -56,6 +56,14 @@ public class TelegramBotServiceImpl extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasChannelPost() && update.getChannelPost().hasVideoNote()) {
+            if (update.getChannelPost().getForwardFrom() != null ||
+            update.getChannelPost().getForwardFromChat() != null ||
+            update.getChannelPost().getForwardFromMessageId() != null) {
+                update.getChannelPost().setForwardFrom(null);
+                update.getChannelPost().setForwardFromChat(null);
+                update.getChannelPost().setForwardFromMessageId(null);
+            }
+
         } else {
             deleteMessage(update.getChannelPost().getChatId(), update.getChannelPost().getMessageId());
         }
