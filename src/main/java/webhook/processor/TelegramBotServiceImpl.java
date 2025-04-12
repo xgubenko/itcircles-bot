@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
@@ -31,7 +33,7 @@ public class TelegramBotServiceImpl extends TelegramLongPollingBot {
     private String chatId;
 
     @PostConstruct
-    private void post() {
+    private void postConstruct() {
         TelegramBotServiceImpl telegramBot = new TelegramBotServiceImpl();
         telegramBot.setUsername(username);
         telegramBot.setToken(token);
@@ -65,6 +67,14 @@ public class TelegramBotServiceImpl extends TelegramLongPollingBot {
                 update.getChannelPost().setForwardDate(null);
                 update.getChannelPost().setForwardSignature(null);
                 update.getChannelPost().setForwardSenderName(null);
+                var reply = new EditMessageReplyMarkup();
+                reply.setMessageId(update.getChannelPost().getMessageId());
+                reply.setReplyMarkup(new InlineKeyboardMarkup());
+                try {
+                    execute(reply);
+                } catch (TelegramApiException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
         } else {
