@@ -62,6 +62,9 @@ public class TelegramBotServiceImpl extends TelegramLongPollingBot {
                 update.getChannelPost().setForwardFrom(null);
                 update.getChannelPost().setForwardFromChat(null);
                 update.getChannelPost().setForwardFromMessageId(null);
+                update.getChannelPost().setForwardDate(null);
+                update.getChannelPost().setForwardSignature(null);
+                update.getChannelPost().setForwardSenderName(null);
             }
 
         } else {
